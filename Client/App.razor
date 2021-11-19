@@ -1,0 +1,25 @@
+@if (isRestoringSession)
+{
+  <h1>Restoring session</h1>
+  return;
+}
+
+@if (IsLoggedIn)
+{
+  <h1>Logged in</h1>
+}
+else
+{
+  <h1>Logged out</h1>
+}
+
+<Router AppAssembly="@typeof(Program).Assembly" PreferExactMatches="@true">
+  <Found Context="routeData">
+    <Client.Authentication.CustomRouteView RouteData="@routeData" DefaultLayout="@typeof(MainLayout)" />
+  </Found>
+  <NotFound>
+    <LayoutView Layout="@typeof(MainLayout)">
+      <p>Sorry, there's nothing at this address.</p>
+    </LayoutView>
+  </NotFound>
+</Router>
