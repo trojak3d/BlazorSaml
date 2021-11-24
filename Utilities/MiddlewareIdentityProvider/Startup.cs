@@ -84,7 +84,7 @@ namespace MiddlewareIdentityProvider
 
             // TODO: This has been built up using a scattergun approach and I have no idea what is required and what isn't.
             app.UseCors(builder => builder
-                .WithOrigins("https://localhost:44304", "https://localhost:44377")
+                .WithOrigins("https://localhost:44304", "https://localhost:44378")
                 .AllowAnyHeader()
                 .AllowCredentials()
                 .AllowAnyMethod());

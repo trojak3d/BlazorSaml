@@ -26,7 +26,7 @@ namespace Client.Shared {
         public string DisplayName => "Login";
 
         public async Task LogOut() {
-            await Context.HttpClient.PostAsync("login/logout");
+            await Context.HttpClient.PostAsync("LogoutHandler.ashx");
             await Context.Security.ClearUserDetailsAsync();
             NavigationManager.NavigateTo(Routes.HomeRoute);
         }

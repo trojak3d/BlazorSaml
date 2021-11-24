@@ -64,7 +64,7 @@ namespace Api
             await httpContext.SignOutAsync(SamlAuthenticationDefaults.AuthenticationScheme,
                 new AuthenticationProperties()
                 {
-                    RedirectUri = "https://localhost:44304/",
+                    RedirectUri = null,
                 });
         }
     }

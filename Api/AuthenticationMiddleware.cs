@@ -11,7 +11,7 @@ namespace Api
     public class AuthenticationMiddleware {
         private readonly RequestDelegate nextRequestDelegate;
         private readonly IAuthenticationSchemeProvider schemes;
-        
+
         public AuthenticationMiddleware(RequestDelegate next,
             IAuthenticationSchemeProvider schemes, SSOSettings ssoSettings) {
             this.nextRequestDelegate = next;
@@ -47,10 +47,10 @@ namespace Api
                 throw ex;
             }
 
-            if (httpContext.Response.StatusCode == 302)
-            {
-                httpContext.Response.StatusCode = 200;
-            }
+            ////if (httpContext.Response.StatusCode == 302)
+            ////{
+            ////    httpContext.Response.StatusCode = 200;
+            ////}
 
             // Lookup or Service middleware will cause 401 response
              if (httpContext.Response.StatusCode == 401 || !IsAuthorized(httpContext)) {

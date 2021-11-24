@@ -107,9 +107,9 @@ namespace Api
 
             // TODO: This has been built up using a scattergun approach and I have no idea what is required and what isn't.
             app.UseCors(builder => builder
-                .WithOrigins("http://localhost:60004", "https://localhost:44304")
+                .WithOrigins("http://localhost:60004", "https://localhost:44304", "http://localhost:56681", "https://localhost:44378")
                 .AllowCredentials()
-                .WithMethods("POST")
+                .WithMethods("POST", "GET")
                 .WithHeaders(HeaderNames.ContentType, HeaderNames.Authorization, HeaderNames.Cookie, HeaderNames.Location)
                 .WithExposedHeaders(HeaderNames.Location)); // Client needs to read Location header to perform redirect for 401
 
@@ -120,6 +120,11 @@ namespace Api
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints => {
+                endpoints.Map("/LogoutHandler.ashx", endpoints
+                    .CreateApplicationBuilder()
+                    .UseMiddleware<LogoutMiddleware>()
+                    .Build());
+
                 endpoints.MapControllers();
             });
         }
